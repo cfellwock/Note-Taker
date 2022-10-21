@@ -2,18 +2,18 @@
 
 
 ## Description
-
+A note taker app using Heroku, JavaSCript and Express
 
 ## Installation 
-
+NPM i
 
 ## Usage
-
-
+It doesn't work, but if it did then it would allow you to write and track notes for various tasks/events or other purposes
 
 ## Credits
-
-
+W3Schools
+Matt Tierney
+YouTube
 
 ## License 
 
