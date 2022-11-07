@@ -1,20 +1,26 @@
 const router = require('express').Router();
-const queries = require('../db/queries');
+const { readFromFile, readAndAppend } = require('../helpers/fsUtils');
 
 // GET "/api/notes" retrieves note information from db
 router.get('/notes', (req, res) => {
-  queries
-    .get()
-    .then((notes) => {
-      return res.json(notes);
-    })
-    .catch((err) => res.status(500).json(err));
+  readFromFile('./db/db.json').then((data) => res.json(JSON.parse(data)));
 });
 
 router.post('/notes', (req, res) => {
-  queries
-    .addNote(req.body)
-    .then((note) => res.json(note))
-    .catch((err) => res.status(500).json(err));
+
+
+  const { title, text } = req.body;
+
+  if (req.body) {
+    const newNote = {
+     title, text
+    };
+
+    readAndAppend(newNote, './db/db.json');
+    res.json(`Note added successfully 🚀`);
+  } else {
+    res.error('Error in adding tip');
+  }
 });
+
 module.exports = router;
